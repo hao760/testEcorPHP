@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#logo{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.admin_image{
+    width:200px;
+    object-fit:contain;
+}
