@@ -8,6 +8,8 @@
     <title>admin Dash board</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style-admin.css">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dhzi2feeu/image/upload/v1657870618/saringan_hfdc1c.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -16,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
                 <a href="../include/index.php"><img src="../img/madara.png" alt="" id="logo"></a>
-                
+
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -44,13 +46,13 @@
                     <button><a href="index.php?insert_category" class="nav-link text-light bg-info">Insert Category</a></button>
                     <button><a href="index.php" class="nav-link text-light bg-info">Insert</a></button>
                     <button><a href="index.php?insert_brand" class="nav-link text-light bg-info">Insert Brand</a></button>
+                    <button><a href="insert_product.php" class="nav-link text-light bg-info">Insert Product</a></button>
+                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
+                    <button><a href="" class="nav-link text-light bg-info">Insert Product</a></button>
+                    <button><a href="" class="nav-link text-light bg-info"></a></button>
+                    <button><a href="" class="nav-link text-light bg-info">Insert Product</a></button>
+                    <button><a href="" class="nav-link text-light bg-info"></a></button>
                     <button><a href="index.php?hehe" class="nav-link text-light bg-info">Insert</a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert Product</a></button>
-                    <button><a href="" class="nav-link text-light bg-info"></a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert Product</a></button>
-                    <button><a href="" class="nav-link text-light bg-info"></a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@
     margin: 0;
 }
 
+
 #logo{
     width: 150px;
     height: 150px;
@@ -12,4 +13,8 @@
 .admin_image{
     width:200px;
     object-fit:contain;
+}
+
+#headerr{
+    text-align: center;
 }

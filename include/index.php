@@ -170,7 +170,7 @@ include('connect.php');
                     $brand_title = $row_data['brand_title'];
                     $brand_id = $row_data['brand_id'];
                     echo "<li class='nav-item mt-2 '>
-                         <a href='#' class='nav-link text-light'> $brand_title</a>
+                         <a href='index.php?brand=$brand_id' class='nav-link text-light'> $brand_title</a>
                          </li>";
                 }
                 ?>
@@ -183,22 +183,28 @@ include('connect.php');
                         <h4>Delivery Category</h4>
                     </a>
                 </li>
-                <li class="nav-item mt-2">
-                    <a href="#" class="nav-link text-light"> Category1 </a>
-                </li>
-                <li class="nav-item mt-2">
-                    <a href="#" class="nav-link text-light"> Category2</a>
-                </li>
-                <li class="nav-item mt-2 ">
-                    <a href="#" class="nav-link text-light"> Category3</a>
-                </li>
-                <li class="nav-item mt-2 ">
-                    <a href="#" class="nav-link text-light"> Category4</a>
-                </li>
+                <?php
+                $select_category = "Select * from `category`";
+                $result_category = mysqli_query($con, $select_category);
+                //$row_data=mysqli_fetch_assoc($result_brands);
+                // echo$row_data['brand_title'];
+                // echo$row_data['brand_title'];
+                while ($row_data = mysqli_fetch_assoc($result_category)) {
+                    $category_title = $row_data['category_title'];
+                    $category_id = $row_data['category_ID'];
+                    echo "<li class='nav-item mt-2 '>
+                         <a href='index.php?category=$category_id' class='nav-link text-light'> $category_title</a>
+                         </li>";
+                }
+                ?>
             </ul>
         </div>
     </div>
     </div>
+
+
+
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
