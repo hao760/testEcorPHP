@@ -19,7 +19,7 @@ if (isset($_POST['insert_brand'])) {
 }
 ?>
 
-
+<h2 class="text-center">Insert Brand</h2>
 
 
 <form action="" method="post" class="mb-2">

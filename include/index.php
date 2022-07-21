@@ -1,5 +1,9 @@
+<?php
+include('connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,22 +54,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Price</a>
                         </li>
-                        <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li> -->
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -168,22 +156,24 @@
             <!-- Brand -->
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item bg-info">
-                    <a href="#" class="nav-link text-light">
+                    <a href="../admin_area/index.php" class="nav-link text-light">
                         <h4>Delivery Brands</h4>
                     </a>
                 </li>
-                <li class="nav-item mt-2">
-                    <a href="#" class="nav-link text-light"> Brand1 </a>
-                </li>
-                <li class="nav-item mt-2">
-                    <a href="#" class="nav-link text-light"> Brand2</a>
-                </li>
-                <li class="nav-item mt-2 ">
-                    <a href="#" class="nav-link text-light"> Brand3</a>
-                </li>
-                <li class="nav-item mt-2 ">
-                    <a href="#" class="nav-link text-light"> Brand4</a>
-                </li>
+                <?php
+                $select_brand = "Select * from `brand`";
+                $result_brand = mysqli_query($con, $select_brand);
+                //$row_data=mysqli_fetch_assoc($result_brands);
+                // echo$row_data['brand_title'];
+                // echo$row_data['brand_title'];
+                while ($row_data = mysqli_fetch_assoc($result_brand)) {
+                    $brand_title = $row_data['brand_title'];
+                    $brand_id = $row_data['brand_id'];
+                    echo "<li class='nav-item mt-2 '>
+                         <a href='#' class='nav-link text-light'> $brand_title</a>
+                         </li>";
+                }
+                ?>
             </ul>
 
             <!-- Category -->

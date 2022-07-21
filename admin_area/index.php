@@ -15,7 +15,8 @@
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
-                <img src="../img/madara.png" alt="" id="logo">
+                <a href="../include/index.php"><img src="../img/madara.png" alt="" id="logo"></a>
+                
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">

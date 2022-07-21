@@ -3,6 +3,10 @@
     padding: 0;
     margin: 0;
 }
+body{
+    width: 95vw;
+    overflow-x: hidden;
+}
 
 #logo{
     width: 50px;
