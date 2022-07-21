@@ -40,10 +40,10 @@
                     <p class="text-light text-center">Admin Name</p>
                 </div>
                 <div class="button text-center">
-                    <button><a href="insert_category.php" class="nav-link text-light bg-info">Insert Product</a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
-                    <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
+                    <button><a href="index.php?insert_category" class="nav-link text-light bg-info">Insert Category</a></button>
+                    <button><a href="index.php" class="nav-link text-light bg-info">Insert</a></button>
+                    <button><a href="index.php?insert_brand" class="nav-link text-light bg-info">Insert Brand</a></button>
+                    <button><a href="index.php?hehe" class="nav-link text-light bg-info">Insert</a></button>
                     <button><a href="" class="nav-link text-light bg-info">Insert</a></button>
                     <button><a href="" class="nav-link text-light bg-info">Insert Product</a></button>
                     <button><a href="" class="nav-link text-light bg-info"></a></button>
@@ -58,17 +58,15 @@
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
+    <!-- child four -->
+    <div class="container">
+        <?php
+        if (isset($_GET['insert_category']))
+            include('insert_category.php');
+        if (isset($_GET['insert_brand']))
+            include('insert_brand.php');
+        ?>
+    </div>
 
 
 
