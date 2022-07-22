@@ -4,7 +4,6 @@ if (isset($_POST['insert_product'])) {
     $product_title = $_POST['product_title'];
     $description = $_POST['description'];
     $product_category = $_POST['product_category'];
-    echo "<script> alert('Prodtct :$product_category ')</script>";
     $product_brand = $_POST['product_brand'];
     $Price = $_POST['Price'];
     // image
