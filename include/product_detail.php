@@ -88,10 +88,7 @@ include('../function/function_common.php');
             <!-- products -->
             <div class="row">
                 <?php
-                searchProduct();
-                getProduct();
-                getUniqueCategory();
-                getUniqueBrand();
+                get1Product();
                 
                 ?>
             </div>
