@@ -1,3 +1,24 @@
+<?php
+include('../include/connect.php');
+if (isset($_POST['insert_product'])) {
+    $product_title = $_POST['product_title'];
+    $description = $_POST['description'];
+    $product_category = $_POST['product_category'];
+    echo "<script> alert('Prodtct :$product_category ')</script>";
+    $product_brand = $_POST['product_brand'];
+    $Price = $_POST['Price'];
+    // image
+    $product_image = $_FILES['product_image']['name'];
+    $temp_image = $_FILES['product_image']['tmp_name'];
+
+    move_uploaded_file($temp_image, "product_img/$product_image");
+
+    $insert_product = "INSERT INTO `product`( `product_title`, `product_description`, `category_id`, `brand_id`, `product_image`, `product_price`) VALUES ('$product_title','$description','$product_category','$product_brand','$product_image','$Price')";
+    $result_query = mysqli_query($con, $insert_product);
+    echo "<script> alert('Insert thanh cong')</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,32 +40,41 @@
         <h1 id="headerr">Insert Product</h1>
         <form action="" method="post" class="mb-2" enctype="multipart/form-data">
             <!-- <Title></Title> -->
-                <div class="form-outline mb-4">
-                    <label for="product_title" class="form-label">product_title</label>
-                    <input type="text" placeholder="Enter title" name="product_title" id="product_title" class="form-control" autocomplete="off" required="required">
-                </div>
+            <div class="form-outline mb-4">
+                <label for="product_title" class="form-label">product_title</label>
+                <input type="text" placeholder="Enter title" name="product_title" id="product_title" class="form-control" autocomplete="off" required="required">
+            </div>
             <!-- </div> -->
             <!-- description -->
-                <div class="form-outline mb-4">
-                    <label for="description" class="form-label">description</label>
-                    <input type="text" placeholder="Enter description" name="description" id="description" class="form-control" autocomplete="off" required="required">
-                </div>
+            <div class="form-outline mb-4">
+                <label for="description" class="form-label">description</label>
+                <input type="text" placeholder="Enter description" name="description" id="description" class="form-control" autocomplete="off" required="required">
+            </div>
 
             <!-- category -->
-                <select name="product_category" id="" class="form-select">
+            <div class="input-group w-90 mt-2">
+                <select name="product_category" id="" class="form-select" required="required">
                     <option value="Option 1">Seclect Option</option>
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-
+                    <?php
+                    $select_query = "Select * from `category`";
+                    $result_select = mysqli_query($con, $select_query);
+                    while ($row = mysqli_fetch_assoc($result_select))
+                        echo "<option value='$row[category_ID]'>$row[category_title]</option>";
+                    ?>
                 </select>
+            </div>
+
+
             <!-- Brand -->
             <div class="input-group w-90 mt-2">
-                <select name="product_category" id="" class="form-select mt-4">
+                <select name="product_brand" id="" class="form-select mt-4">
                     <option value="Option 1">Seclect Brand</option>
-                    <option value="Option 1">Brand 1</option>
-                    <option value="Option 2">Brand 2</option>
-                    <option value="Option 3">Brand 3</option>
+                    <?php
+                    $select_query = "Select * from `brand`";
+                    $result_select = mysqli_query($con, $select_query);
+                    while ($row = mysqli_fetch_assoc($result_select))
+                        echo "<option value='$row[brand_id]'>$row[brand_title]</option>";
+                    ?>
                 </select>
             </div>
 
@@ -53,19 +83,16 @@
                 <input type="file" name="product_image" id="product_image" class="form-control" required="required">
             </div>
 
-            <div class="w-90 m-auto mt-3">
-                <label for="product_image2" class="form-label">product_ image2</label>
-                <input type="file" name="product_image2" id="product_image2" class="form-control" required="required">
+
+
+            <div class="form-outline mb-4">
+                <label for="Price" class="form-label">Price</label>
+                <input type="text" placeholder="Enter Price" name="Price" id="Price" class="form-control" autocomplete="off" required="required">
             </div>
 
-                <div class="form-outline mb-4">
-                    <label for="Price" class="form-label">Price</label>
-                    <input type="text" placeholder="Enter Price" name="Price" id="Price" class="form-control" autocomplete="off" required="required">
-                </div>
-
-                <div class="form-outline mb-4">
-                    <input type="submit" class="btn btn-info" name="insert_product" value="Submit">
-                </div>
+            <div class="form-outline mb-4">
+                <input type="submit" class="btn btn-info" name="insert_product" value="Submit">
+            </div>
         </form>
     </div>
 

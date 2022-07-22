@@ -15,6 +15,7 @@ if (isset($_POST['insert_brand'])) {
         $result = mysqli_query($con, $insert_query);
         if ($result)
             echo "<script> alert('$brand_title has been inserted successfully')</script>";
+
     }
 }
 ?>

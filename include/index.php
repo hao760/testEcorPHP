@@ -166,6 +166,7 @@ include('connect.php');
                 //$row_data=mysqli_fetch_assoc($result_brands);
                 // echo$row_data['brand_title'];
                 // echo$row_data['brand_title'];
+
                 while ($row_data = mysqli_fetch_assoc($result_brand)) {
                     $brand_title = $row_data['brand_title'];
                     $brand_id = $row_data['brand_id'];
@@ -204,7 +205,7 @@ include('connect.php');
 
 
 
-    
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
