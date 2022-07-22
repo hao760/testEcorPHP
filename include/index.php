@@ -1,5 +1,6 @@
 <?php
-include('connect.php');
+// include('connect.php');
+include('../function/function_common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,65 +91,13 @@ include('connect.php');
         <div class="col-md-10">
             <!-- products -->
             <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/popeyes-14134.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to cart</a>
-                            <a href="#" class="btn btn-secondary">View more</a>
+                <?php
+                getProduct();
+                ?>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/popeyes-chicken-507354.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-warning">Add to cart</a>
-                            <a href="#" class="btn btn-secondary">View more</a>
+                <!-- <script src="/admin_area/product_img/hai badong.jpg"></script>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/texas-chicken-348801.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-danger">Add to cart</a>
-                            <a href="#" class="btn btn-secondary">View more</a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/texas-chicken-348801.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
-                            <a href="#" class="btn btn-secondary">View more</a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="../img/texas-chicken-348801.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-danger">Add to cart</a>
-                            <a href="#" class="btn btn-secondary">View more</a>
-                        </div>
-                    </div>
-                </div>
+                <a href="/admin_area/product_img/itachi.jpg"></a> -->
 
             </div>
         </div>
@@ -161,19 +110,7 @@ include('connect.php');
                     </a>
                 </li>
                 <?php
-                $select_brand = "Select * from `brand`";
-                $result_brand = mysqli_query($con, $select_brand);
-                //$row_data=mysqli_fetch_assoc($result_brands);
-                // echo$row_data['brand_title'];
-                // echo$row_data['brand_title'];
-
-                while ($row_data = mysqli_fetch_assoc($result_brand)) {
-                    $brand_title = $row_data['brand_title'];
-                    $brand_id = $row_data['brand_id'];
-                    echo "<li class='nav-item mt-2 '>
-                         <a href='index.php?brand=$brand_id' class='nav-link text-light'> $brand_title</a>
-                         </li>";
-                }
+                getBrand();
                 ?>
             </ul>
 
@@ -185,18 +122,7 @@ include('connect.php');
                     </a>
                 </li>
                 <?php
-                $select_category = "Select * from `category`";
-                $result_category = mysqli_query($con, $select_category);
-                //$row_data=mysqli_fetch_assoc($result_brands);
-                // echo$row_data['brand_title'];
-                // echo$row_data['brand_title'];
-                while ($row_data = mysqli_fetch_assoc($result_category)) {
-                    $category_title = $row_data['category_title'];
-                    $category_id = $row_data['category_ID'];
-                    echo "<li class='nav-item mt-2 '>
-                         <a href='index.php?category=$category_id' class='nav-link text-light'> $category_title</a>
-                         </li>";
-                }
+                getCategory();
                 ?>
             </ul>
         </div>
