@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin Dash board</title>
+    <title>Admin Dash board</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style-admin.css">
     <link rel="shortcut icon" href="https://res.cloudinary.com/dhzi2feeu/image/upload/v1657870618/saringan_hfdc1c.ico" type="image/x-icon">
@@ -44,7 +43,7 @@
                 </div>
                 <div class="button text-center">
                     <button><a href="index.php?insert_category" class="nav-link text-light bg-info">Insert Category</a></button>
-                    <button><a href="index.php" class="nav-link text-light bg-info">Insert</a></button>
+                    <button><a href="index.php?inser$g" class="nav-link text-light bg-info">Insert</a></button>
                     <button><a href="index.php?insert_brand" class="nav-link text-light bg-info">Insert Brand</a></button>
                     <button><a href="insert_product.php" class="nav-link text-light bg-info">Insert Product</a></button>
                     <button><a href="" class="nav-link text-light bg-info">Insert</a></button>

@@ -15,6 +15,8 @@ if (isset($_POST['insert_product'])) {
     $insert_product = "INSERT INTO `product`( `product_title`, `product_description`, `category_id`, `brand_id`, `product_image`, `product_price`) VALUES ('$product_title','$description','$product_category','$product_brand','$product_image','$Price')";
     $result_query = mysqli_query($con, $insert_product);
     echo "<script> alert('Insert thanh cong')</script>";
+    echo "<script>window.open('insert_product.php','_self')</script>";
+
 }
 ?>
 

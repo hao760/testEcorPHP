@@ -10,12 +10,10 @@ if (isset($_POST['insert_brand'])) {
     if ($number > 0)
         echo "<script>alert('This brand is present inside the database')</script>";
     else {
-
         $insert_query = "insert into `brand` (brand_title) values('$brand_title')";
         $result = mysqli_query($con, $insert_query);
         if ($result)
             echo "<script> alert('$brand_title has been inserted successfully')</script>";
-
     }
 }
 ?>

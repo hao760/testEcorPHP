@@ -15,6 +15,8 @@ if (isset($_POST['insert_cat'])) {
         $result = mysqli_query($con, $insert_query);
         if ($result)
             echo "<script> alert('$category_title has been inserted successfully')</script>";
+            echo "<script>window.open('index.php?insert_category','_self')</script>";
+
     }
 }
 ?>

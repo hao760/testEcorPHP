@@ -92,7 +92,9 @@ include('../function/function_common.php');
                 getProduct();
                 getUniqueCategory();
                 getUniqueBrand();
-                
+                add_cart();
+                // $ip = getIPAddress();
+                // echo 'User Real IP Address - ' . $ip;
                 ?>
             </div>
         </div>

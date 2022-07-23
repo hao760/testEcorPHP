@@ -15,7 +15,7 @@
                                 <div class='card-body'>
                                     <h5 class='card-title'> $row[product_title]</h5>
                                     <p class='card-text'>Mo ta: $row[product_description].</p>
-                                    <a href='' class='btn btn-info'>Add to cart</a>
+                                    <a href='index.php?add_to_cart=$row[product_id]' class='btn btn-info'>Add to cart</a>
                                     <a href='product_detail.php?product_id=$row[product_id]' class='btn btn-secondary'>View more</a>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
             $result_select = mysqli_query($con, $select_query);
             // $num_of_row = mysqli_num_rows($result_select);
             $row = mysqli_fetch_assoc($result_select);
-                echo "<div style='margin: auto;' class='col-md-4 mb-2'>
+            echo "<div style='margin: auto;' class='col-md-4 mb-2'>
                             <div  class='card' style='width: 18rem;'>
                                 <img src='../admin_area/product_img/$row[product_image]' class='card-img-top' alt='...'>
                                 <div class='card-body'>
@@ -159,6 +159,52 @@
                                 </div>
                             </div>
                         </div>";
-            
         }
     }
+
+    function getIPAddress()
+    {
+        //whether ip is from the share internet  
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        //whether ip is from the proxy  
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        //whether ip is from the remote address  
+        else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+    // $ip = getIPAddress();  
+    // echo 'User Real IP Address - '.$ip; 
+    function add_cart()
+    {
+        if (isset($_GET['add_to_cart'])) {
+            global $con;
+            $ip = getIPAddress();
+            $get_id_product = $_GET['add_to_cart'];
+            $select_query = "select * from `cart_details` where ip_address='$ip' and product_id=$get_id_product";
+            $result_query = mysqli_query($con, $select_query);
+            $num_of_row = mysqli_num_rows($result_query);
+            if ($num_of_row > 0)
+            {
+                echo "<script>alert('San pham da ton tai')</script>";
+                echo "<script>window.open('index.php','_self')</script>";
+            }
+            else {
+                $insert_query = "insert into `cart_details` (product_ID,ip_address,quanlity) values('$get_id_product','$ip',1)";
+                $result_select = mysqli_query($con, $insert_query);
+                echo "<script>alert('Them vào cart thành công')</script>";
+                echo "<script>window.open('index.php','_self')</script>";
+            }
+        }
+    }
+
+
+
+    ?>
+
+    
