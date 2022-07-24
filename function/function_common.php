@@ -15,6 +15,7 @@
                                 <div class='card-body'>
                                     <h5 class='card-title'> $row[product_title]</h5>
                                     <p class='card-text'>Mo ta: $row[product_description].</p>
+                                    <p class='card-text'>Giá: $row[product_price].</p>
                                     <a href='index.php?add_to_cart=$row[product_id]' class='btn btn-info'>Add to cart</a>
                                     <a href='product_detail.php?product_id=$row[product_id]' class='btn btn-secondary'>View more</a>
                                 </div>
@@ -129,7 +130,7 @@
                                 <div class='card-body'>
                                     <h5 class='card-title'> $row[product_title]</h5>
                                     <p class='card-text'>Mo ta: $row[product_description].</p>
-                                    <a href='' class='btn btn-info'>Add to cart</a>
+                                    <a href='index.php?add_to_cart=$row[product_id]' class='btn btn-info'>Add to cart</a>
                                     <a href='product_detail.php?product_id=$row[product_id]' class='btn btn-secondary'>View more</a>
                                     
                                 </div>
@@ -153,7 +154,7 @@
                                 <div class='card-body'>
                                     <h5 class='card-title'> $row[product_title]</h5>
                                     <p class='card-text'>Mo ta: $row[product_description].</p>
-                                    <a href='' class='btn btn-info'>Add to cart</a>
+                                    <a href='index.php?add_to_cart=$row[product_id]' class='btn btn-info'>Add to cart</a>
                                     <a href='product_detail.php?product_id=$row[product_id]' class='btn btn-secondary'>View more</a>
                                     
                                 </div>
@@ -202,6 +203,53 @@
             }
         }
     }
+
+
+    function cart_item()
+    {
+        if (isset($_GET['add_to_cart'])) {
+            global $con;
+            $ip = getIPAddress();
+
+
+            $select_query = "select * from `cart_details` where ip_address='$ip'";
+            $result_query = mysqli_query($con, $select_query);
+            $num_of_row = mysqli_num_rows($result_query);
+        }
+            else {
+                global $con;
+            $ip = getIPAddress();
+
+
+            $select_query = "select * from `cart_details` where ip_address='$ip'";
+            $result_query = mysqli_query($con, $select_query);
+            $num_of_row = mysqli_num_rows($result_query);
+            }
+            echo $num_of_row;
+        }
+
+
+        function total_cart()
+    {
+            global $con;
+            $ip = getIPAddress();
+            $total=0;
+            $select_query = "select * from `cart_details` where ip_address='$ip'";
+            $result_query = mysqli_query($con, $select_query);
+            while($row=mysqli_fetch_array($result_query)){
+                $product_id=$row['product_id'];
+                $select_product = "select * from `product` where product_id= '$product_id'";
+                $result_product = mysqli_query($con, $select_product);
+            while($row_price=mysqli_fetch_array($result_product)){
+                $product_price=array($row_price['product_price']);
+                $product_value=array_sum($product_price);
+                $total+=$product_value;
+            }
+            }
+            echo $total;
+        
+    }
+    
 
 
 

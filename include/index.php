@@ -45,11 +45,11 @@ include('../function/function_common.php');
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="#">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup>1</sup>
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item();?></sup>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Price</a>
+                            <a class="nav-link active" href="#">Price: <?php total_cart();?></a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
