@@ -1,4 +1,4 @@
-    <?php
+b <?php
     include('../include/connect.php');
 
     function getProduct()
@@ -190,12 +190,10 @@
             $select_query = "select * from `cart_details` where ip_address='$ip' and product_id=$get_id_product";
             $result_query = mysqli_query($con, $select_query);
             $num_of_row = mysqli_num_rows($result_query);
-            if ($num_of_row > 0)
-            {
+            if ($num_of_row > 0) {
                 echo "<script>alert('San pham da ton tai')</script>";
                 echo "<script>window.open('index.php','_self')</script>";
-            }
-            else {
+            } else {
                 $insert_query = "insert into `cart_details` (product_ID,ip_address,quanlity) values('$get_id_product','$ip',1)";
                 $result_select = mysqli_query($con, $insert_query);
                 echo "<script>alert('Them vào cart thành công')</script>";
@@ -215,44 +213,70 @@
             $select_query = "select * from `cart_details` where ip_address='$ip'";
             $result_query = mysqli_query($con, $select_query);
             $num_of_row = mysqli_num_rows($result_query);
-        }
-            else {
-                global $con;
+        } else {
+            global $con;
             $ip = getIPAddress();
 
 
             $select_query = "select * from `cart_details` where ip_address='$ip'";
             $result_query = mysqli_query($con, $select_query);
             $num_of_row = mysqli_num_rows($result_query);
-            }
-            echo $num_of_row;
         }
-
-
-        function total_cart()
-    {
-            global $con;
-            $ip = getIPAddress();
-            $total=0;
-            $select_query = "select * from `cart_details` where ip_address='$ip'";
-            $result_query = mysqli_query($con, $select_query);
-            while($row=mysqli_fetch_array($result_query)){
-                $product_id=$row['product_id'];
-                $select_product = "select * from `product` where product_id= '$product_id'";
-                $result_product = mysqli_query($con, $select_product);
-            while($row_price=mysqli_fetch_array($result_product)){
-                $product_price=array($row_price['product_price']);
-                $product_value=array_sum($product_price);
-                $total+=$product_value;
-            }
-            }
-            echo $total;
-        
+        echo $num_of_row;
     }
-    
+
+
+    function total_cart()
+    {
+        global $con;
+        $ip = getIPAddress();
+        $total = 0;
+        $select_query = "select * from `cart_details` where ip_address='$ip'";
+        $result_query = mysqli_query($con, $select_query);
+        while ($row = mysqli_fetch_array($result_query)) {
+            $product_id = $row['product_id'];
+            $select_product = "select * from `product` where product_id= '$product_id'";
+            $result_product = mysqli_query($con, $select_product);
+            while ($row_price = mysqli_fetch_array($result_product)) {
+                // $product_price=array($row_price['product_price']);
+                // $product_value=array_sum($product_price);
+                $total += $row_price['product_price'];
+            }
+        }
+        echo $total;
+    }
+
+
+    function get_cart()
+    {
+        global $con;
+        $ip = getIPAddress();
+        $select_query = "select * from `cart_details` where ip_address='$ip'";
+        $result_query = mysqli_query($con, $select_query);
+        while ($row = mysqli_fetch_array($result_query)) {
+            $product_id = $row['product_id'];
+            $select_product = "select * from `product` where product_id= '$product_id'";
+            $result_product = mysqli_query($con, $select_product);
+            while ($row_price = mysqli_fetch_array($result_product)) {
+                $Product = $row_price['product_title'];
+                $ProductImage = $row_price['product_image'];
+                $Quanlity = $row['quanlity'];
+                $Price = $row_price['product_price'];
+                $TotalPrice = $Quanlity * $Price;
+
+                echo "<tr>
+                        <td> $Product </td>
+                        <td ><img style='width: 80px;height: 60px;' src='../admin_area/product_img/$ProductImage'></img> </td><td>
+                            $Quanlity </td>
+                            <td>$ $TotalPrice</td>
+                            <td><input type='checkbox'></input></td>
+                            <td><button class= bg-info'>Updata</button> <button class= bg-info'>Remove</button></td>
+                            </tr>";
+            }
+        }
+    }
+
 
 
 
     ?>
-
-    

@@ -8,7 +8,7 @@ include('../function/function_common.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce Website using PHP and MySQL</title>
+    <title>Ecommerce Website-Cart detail</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="https://res.cloudinary.com/dhzi2feeu/image/upload/v1657870618/saringan_hfdc1c.ico" type="image/x-icon">
 
@@ -44,12 +44,12 @@ include('../function/function_common.php');
                             <a class="nav-link active" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item();?></sup>
+                            <a class="nav-link active" href="#">
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup>1</sup>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php">Price: <?php total_cart();?></a>
+                            <a class="nav-link active" href="#">Price</a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
@@ -87,15 +87,38 @@ include('../function/function_common.php');
         <div class="col-md-10">
             <!-- products -->
             <div class="row">
-                <?php
-                searchProduct();
-                getProduct();
-                getUniqueCategory();
-                getUniqueBrand();
-                add_cart();
-                // $ip = getIPAddress();
-                // echo 'User Real IP Address - ' . $ip;
-                ?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Product Image</th>
+                            <th>Quanlity</th>
+                            <th>Total Price</th>
+                            <th>Remove</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        // global $con;
+                        // $ip = getIPAddress();
+                        // $total = 0;
+                        // $select_query = "select * from `cart_details` where ip_address='$ip'";
+                        // $result_query = mysqli_query($con, $select_query);
+                        // while ($row = mysqli_fetch_array($result_query)) {
+                        //     $product_id = $row['product_id'];
+                        //     $select_product = "select * from `product` where product_id= '$product_id'";
+                        //     $result_product = mysqli_query($con, $select_product);
+                        //     while ($row_price = mysqli_fetch_array($result_product)) {
+                        //         $Price=$row_price['product_price'];
+                        //     }
+                        // }
+                        get_cart();
+                        ?>
+                    </tbody>
+
+                </table>
             </div>
         </div>
         <div class="col-md-2 col-bg-2 bg-secondary p-0">
