@@ -1,4 +1,4 @@
-b <?php
+ <?php
     include('../include/connect.php');
 
     function getProduct()
@@ -270,7 +270,8 @@ b <?php
                         <td> $Product </td>
                         <td ><img style='width: 80px;height: 60px;' src='../admin_area/product_img/$ProductImage'></img> </td>
                         <td>  $Quanlity </td>
-                        <td><input type='number' name='Update_cart'> </td>
+                        <td><input type='number' name='Update_cart[]' >
+                        <input type='hidden' name='ID[]' value='$product_id'> </td>
                             <td>$ $TotalPrice</td>
                         <td><input type='checkbox' name='removeItem[]' value='$product_id'></input></td>
                         <td><input type='submit' value='Update' class='bg-info p-2' name='Update'>
@@ -281,12 +282,21 @@ b <?php
     }
     function Update()
     {
-        if (isset($_POST['Update_cart'])) {
+        if (isset($_POST['Update'])) {
             global $con;
             $ip = getIPAddress();
-            $quality = $_POST['Update_cart'];
-            $update_query = "UPDATE `cart_details` SET `quanlity`=$quality WHERE ip_address='$ip'";
-            $result_query = mysqli_query($con, $update_query);
+            $dem = 0;
+
+            foreach ($_POST['Update_cart'] as $deleteitem) {
+                if ($deleteitem > 0) {
+                    $id = $_POST['ID'][$dem];
+                    echo "<script>console.log('$id')</script>";
+                    echo "<script>console.log('$deleteitem')</script>";
+                    $update_query = "UPDATE `cart_details` SET `quanlity`=$deleteitem WHERE product_id='$id'";
+                    $dem++;
+                    $result_query = mysqli_query($con, $update_query);
+                }
+            }
         }
     }
     function Delete_cart()
@@ -298,15 +308,31 @@ b <?php
                 # code...
                 $delete_query = "DELETE FROM `cart_details` WHERE product_id=$deleteitem";
                 $result_query = mysqli_query($con, $delete_query);
-                if($result_query)
-                {
+                if ($result_query) {
                     echo "<script>alert('Xoa thanh cong')</script>";
                     echo "<script>window.open('cart.php','_self')</script>";
-                }
-                else
-                echo "<script>alert('Xoa that bai')</script>";
+                } else
+                    echo "<script>alert('Xoa that bai')</script>";
             }
             // echo "<script>alert('Xoa thanh cong')</script>";  ip_address='$ip' and 
+        }
+    }
+    function Regiter()
+    {
+        if (isset($_POST['Regiter'])) {
+
+            global $con;
+            $user_name = $_POST['user-name'];
+            $user_password = $_POST['user_password'];
+            $user_address = $_POST['user_address'];
+            $ip = getIPAddress();
+            $insert_query = "INSERT INTO `user`( `user_name`, `user_password`, `user_ip`, `user_address`) VALUES ('$user_name','$user_password','$ip','$user_address')";
+            $result_query = mysqli_query($con, $insert_query);
+            if ($result_query) {
+                echo "<script>alert('Insert thanh cong')</script>";
+                echo "<script>window.open('../include/index.php','_self')</script>";
+            } else
+                echo "<script>alert('Insert that bai')</script>";
         }
     }
 

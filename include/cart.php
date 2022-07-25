@@ -112,6 +112,7 @@ include('../function/function_common.php');
                 </table>
                 </form>
             </div>
+            <button class="p-3  bg-info"><a class="text-decoration-none " href="checkout.php">ChechOut</a></button>
         </div>
         <div class="col-md-2 col-bg-2 bg-secondary p-0">
             <!-- Brand -->

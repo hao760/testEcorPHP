@@ -1,9 +1,8 @@
 <?php
-include('../function/function_common.php');
+// include('../function/function_common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,11 +44,12 @@ include('../function/function_common.php');
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="cart.php">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item();?></sup>
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup></sup>
                             </a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php">Price: <?php total_cart();?></a>
+                            <a class="nav-link active" href="cart.php">Price: </a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
@@ -65,10 +65,10 @@ include('../function/function_common.php');
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../user_area/user_register.php">Welcome</a>
+                <a class="nav-link active" aria-current="page" href="#">Welcome</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../user_area/user_login.php">Login</a>
+                <a class="nav-link active" aria-current="page" href="#">Login</a>
             </li>
 
         </ul>
@@ -88,41 +88,15 @@ include('../function/function_common.php');
             <!-- products -->
             <div class="row">
                 <?php
-                searchProduct();
-                getProduct();
-                getUniqueCategory();
-                getUniqueBrand();
-                add_cart();
-                // $ip = getIPAddress();
-                // echo 'User Real IP Address - ' . $ip;
+                if(!isset($_SESSION['username'])){
+                    include('../user_area/user_login.php');
+                }
+                else
+                include('payment.php');
                 ?>
             </div>
         </div>
-        <div class="col-md-2 col-bg-2 bg-secondary p-0">
-            <!-- Brand -->
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item bg-info">
-                    <a href="../admin_area/index.php" class="nav-link text-light">
-                        <h4>Delivery Brands</h4>
-                    </a>
-                </li>
-                <?php
-                getBrand();
-                ?>
-            </ul>
-
-            <!-- Category -->
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item bg-info">
-                    <a href="#" class="nav-link text-light">
-                        <h4>Delivery Category</h4>
-                    </a>
-                </li>
-                <?php
-                getCategory();
-                ?>
-            </ul>
-        </div>
+        
     </div>
     </div>
 

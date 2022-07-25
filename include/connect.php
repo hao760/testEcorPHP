@@ -3,7 +3,7 @@
 
 $con = mysqli_connect('localhost', 'root', '','E-Commerce');
 if ($con)
-    echo "connection successful";
+    echo "connected";
 else
 {
     echo "connection failt";
