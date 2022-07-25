@@ -240,7 +240,8 @@ b <?php
             while ($row_price = mysqli_fetch_array($result_product)) {
                 // $product_price=array($row_price['product_price']);
                 // $product_value=array_sum($product_price);
-                $total += $row_price['product_price'];
+                $temp = $row_price['product_price'] * $row['quanlity'];
+                $total += $temp;
             }
         }
         echo $total;
@@ -261,18 +262,51 @@ b <?php
                 $Product = $row_price['product_title'];
                 $ProductImage = $row_price['product_image'];
                 $Quanlity = $row['quanlity'];
+                $product_id = $row['product_id'];
                 $Price = $row_price['product_price'];
                 $TotalPrice = $Quanlity * $Price;
 
                 echo "<tr>
                         <td> $Product </td>
-                        <td ><img style='width: 80px;height: 60px;' src='../admin_area/product_img/$ProductImage'></img> </td><td>
-                            $Quanlity </td>
+                        <td ><img style='width: 80px;height: 60px;' src='../admin_area/product_img/$ProductImage'></img> </td>
+                        <td>  $Quanlity </td>
+                        <td><input type='number' name='Update_cart'> </td>
                             <td>$ $TotalPrice</td>
-                            <td><input type='checkbox'></input></td>
-                            <td><button class= bg-info'>Updata</button> <button class= bg-info'>Remove</button></td>
+                        <td><input type='checkbox' name='removeItem[]' value='$product_id'></input></td>
+                        <td><input type='submit' value='Update' class='bg-info p-2' name='Update'>
+                            <input type='submit' value='Delete' class='bg-secondary p-2' name='Delete_cart'></td>
                             </tr>";
             }
+        }
+    }
+    function Update()
+    {
+        if (isset($_POST['Update_cart'])) {
+            global $con;
+            $ip = getIPAddress();
+            $quality = $_POST['Update_cart'];
+            $update_query = "UPDATE `cart_details` SET `quanlity`=$quality WHERE ip_address='$ip'";
+            $result_query = mysqli_query($con, $update_query);
+        }
+    }
+    function Delete_cart()
+    {
+        if (isset($_POST['Delete_cart'])) {
+            global $con;
+            $ip = getIPAddress();
+            foreach ($_POST['removeItem'] as $deleteitem) {
+                # code...
+                $delete_query = "DELETE FROM `cart_details` WHERE product_id=$deleteitem";
+                $result_query = mysqli_query($con, $delete_query);
+                if($result_query)
+                {
+                    echo "<script>alert('Xoa thanh cong')</script>";
+                    echo "<script>window.open('cart.php','_self')</script>";
+                }
+                else
+                echo "<script>alert('Xoa that bai')</script>";
+            }
+            // echo "<script>alert('Xoa thanh cong')</script>";  ip_address='$ip' and 
         }
     }
 

@@ -44,12 +44,12 @@ include('../function/function_common.php');
                             <a class="nav-link active" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup>1</sup>
+                        <a class="nav-link active" href="cart.php">
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item();?></sup>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Price</a>
+                        <a class="nav-link active" href="cart.php">Price: <?php total_cart();' $'?></a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
@@ -87,12 +87,14 @@ include('../function/function_common.php');
         <div class="col-md-10">
             <!-- products -->
             <div class="row">
+                <form action="" method="post">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Product</th>
                             <th>Product Image</th>
                             <th>Quanlity</th>
+                            <th>Update</th>
                             <th>Total Price</th>
                             <th>Remove</th>
                             <th>Operation</th>
@@ -101,24 +103,14 @@ include('../function/function_common.php');
                     <tbody>
 
                         <?php
-                        // global $con;
-                        // $ip = getIPAddress();
-                        // $total = 0;
-                        // $select_query = "select * from `cart_details` where ip_address='$ip'";
-                        // $result_query = mysqli_query($con, $select_query);
-                        // while ($row = mysqli_fetch_array($result_query)) {
-                        //     $product_id = $row['product_id'];
-                        //     $select_product = "select * from `product` where product_id= '$product_id'";
-                        //     $result_product = mysqli_query($con, $select_product);
-                        //     while ($row_price = mysqli_fetch_array($result_product)) {
-                        //         $Price=$row_price['product_price'];
-                        //     }
-                        // }
+                        Update();
                         get_cart();
+                        Delete_cart();
                         ?>
                     </tbody>
-
+<!-- <input type="submit" value="g" name=""> -->
                 </table>
+                </form>
             </div>
         </div>
         <div class="col-md-2 col-bg-2 bg-secondary p-0">
