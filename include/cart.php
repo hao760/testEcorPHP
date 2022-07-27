@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../function/function_common.php');
 ?>
 <!DOCTYPE html>
@@ -44,12 +45,13 @@ include('../function/function_common.php');
                             <a class="nav-link active" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="cart.php">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item();?></sup>
+                            <a class="nav-link active" href="cart.php">
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item(); ?></sup>
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="cart.php">Price: <?php total_cart();' $'?></a>
+                            <a class="nav-link active" href="cart.php">Price: <?php total_cart();
+                                                                                ' $' ?></a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
@@ -63,15 +65,35 @@ include('../function/function_common.php');
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Welcome</a>
+    <?php
+        if (isset($_SESSION['user_name']))
+        {
+            $user=$_SESSION['user_name'];
+            echo "<ul class='navbar-nav me-auto'>
+            <li class='nav-item'>
+                <a class='nav-link active' aria-current='page' href='../user_area/user_register.php'>Welcome  $user</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Login</a>
+            <li class = 'nav-item'>
+                <a class = 'nav-link active' aria-current='page' href='../user_area/user_login.php'>Log out</a>
             </li>
+    
+        </ul>";
+        }
+        else
+        {
+            echo "<ul class='navbar-nav me-auto'>
+            <li class='nav-item'>
+                <a class='nav-link active' aria-current='page' href='../user_area/user_register.php'>Welcome  </a>
+            </li>
+            <li class = 'nav-item'>
+                <a class = 'nav-link active' aria-current='page' href='../user_area/user_login.php'>Log gin1</a>
+            </li>
+    
+        </ul>";
+        }
+           
 
-        </ul>
+        ?>
     </nav>
 
 
@@ -88,31 +110,31 @@ include('../function/function_common.php');
             <!-- products -->
             <div class="row">
                 <form action="" method="post">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Product Image</th>
-                            <th>Quanlity</th>
-                            <th>Update</th>
-                            <th>Total Price</th>
-                            <th>Remove</th>
-                            <th>Operation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Product Image</th>
+                                <th>Quanlity</th>
+                                <th>Update</th>
+                                <th>Total Price</th>
+                                <th>Remove</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <?php
-                        Update();
-                        get_cart();
-                        Delete_cart();
-                        ?>
-                    </tbody>
-<!-- <input type="submit" value="g" name=""> -->
-                </table>
+                            <?php
+                            Update();
+                            get_cart();
+                            Delete_cart();
+                            ?>
+                        </tbody>
+                        <!-- <input type="submit" value="g" name=""> -->
+                    </table>
                 </form>
             </div>
-            <button class="p-3  bg-info"><a class="text-decoration-none " href="checkout.php">ChechOut</a></button>
+            <button class="p-3 m-2 bg-info"><a class="text-decoration-none " href="checkout.php">ChechOut</a></button>
         </div>
         <div class="col-md-2 col-bg-2 bg-secondary p-0">
             <!-- Brand -->

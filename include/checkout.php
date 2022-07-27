@@ -1,8 +1,11 @@
 <?php
-// include('../function/function_common.php');
+// if (!file_exists('../function/function_common.php'))
+session_start();
+include('../function/function_common.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +22,7 @@
 
 <body>
     <!-- navbar -->
-    <div class="p-0 container-fluid">
+    <div class="p-0 container-fluid ">
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -44,12 +47,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="cart.php">
-                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup></sup>
+                                <i class="p-1 fa-solid fa-cart-arrow-down"></i>Cart<sup><?php cart_item(); ?></sup>
                             </a>
-                            
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="cart.php">Price: </a>
+                            <a class="nav-link active" href="cart.php">Price: <?php total_cart();
+                                                                                ' $' ?></a>
                         </li>
                     </ul>
                     <form action="" class="d-flex">
@@ -63,15 +67,32 @@
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Welcome</a>
+        <?php
+        if (isset($_SESSION['user_name'])) {
+            $user = $_SESSION['user_name'];
+            echo "<ul class='navbar-nav me-auto'>
+            <li class='nav-item'>
+                <a class='nav-link active' aria-current='page' href='../user_area/user_register.php'>Welcome  $user</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Login</a>
+            <li class = 'nav-item'>
+                <a class = 'nav-link active' aria-current='page' href='../user_area/user_login.php'>Log out</a>
             </li>
+    
+        </ul>";
+        } else {
+            echo "<ul class='navbar-nav me-auto'>
+            <li class='nav-item'>
+                <a class='nav-link active' aria-current='page' href='../user_area/user_register.php'>Welcome  </a>
+            </li>
+            <li class = 'nav-item'>
+                <a class = 'nav-link active' aria-current='page' href='../user_area/user_login.php'>Log gin1</a>
+            </li>
+    
+        </ul>";
+        }
 
-        </ul>
+
+        ?>
     </nav>
 
 
@@ -83,20 +104,19 @@
     </div>
 
     <!-- child four -->
-    <div class="row iimg">
-        <div class="col-md-10">
+    <div class="row iimg m-3">
+        <div class="col-md-10 m-3">
             <!-- products -->
             <div class="row">
                 <?php
-                if(!isset($_SESSION['username'])){
+                if (!isset($_SESSION['user_name'])) {
                     include('../user_area/user_login.php');
-                }
-                else
-                include('payment.php');
+                } else
+                    include('payment.php');
                 ?>
             </div>
         </div>
-        
+
     </div>
     </div>
 

@@ -89,7 +89,7 @@ include('../function/function_common.php');
             <div class="row">
                 <?php
                 get1Product();
-                
+
                 ?>
             </div>
         </div>

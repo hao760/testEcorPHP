@@ -335,6 +335,9 @@
                 echo "<script>alert('Insert that bai')</script>";
         }
     }
+    function Login()
+    {
+    }
 
 
 
